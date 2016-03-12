@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <form action="{{ url_for('add_posting') }}" method="post" class="add-posting">
+      <dl>
+        <dt>Title:
+        <dd><input type="text" size="30" name="title">
+        <dt>Text:
+        <dd><textarea name="text" rows="5" cols="40"></textarea>
+        <dd><input type="submit" value="Share">
+      </dl>
+    </form>
+
+  <ul class="postings">
+  {% for posting in postings %}
+    <li><h2>{{ posting.title }}</h2>{{ posting.text|safe }}
+  {% else %}
+    <li><em>Unbelievable.  No postings here so far</em>
+  {% endfor %}
+  </ul>
+{% endblock %}
