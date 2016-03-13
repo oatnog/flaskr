@@ -14,8 +14,11 @@ app = Flask(__name__)
 # show all the posting
 @app.route("/")
 def show_postings():
-	postings = table['title', 'text']
-	return render_template('show_postings.html', postings=postings)
+    try:
+    	postings = table['title', 'text']
+    except:
+        postings = []
+    return render_template('show_postings.html', postings=postings)
 
 @app.route("/add", methods=['POST'])
 def add_posting():
