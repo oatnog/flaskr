@@ -5,7 +5,7 @@ import dataset
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 
 # connecting to a SQLite database
-db = dataset.connect('sqlite:///myflasker.db')
+db = dataset.connect('sqlite:///myflaskr.db')
 table = db['postings']
 
 # create the application
@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def show_postings():
-    postings = table.all()
+    postings = table.find() # to reverse order, table.find(order_by='-id')
     return render_template('show_postings.html', postings=postings)
 
 
